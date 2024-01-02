@@ -88,7 +88,7 @@ while True:
                         amplitude1 += 10
                     elif event.key == pygame.K_SPACE:
                         running_annual = True
-                        running_auto = True
+                        running_auto = False
 
 
             screen.fill(black)
