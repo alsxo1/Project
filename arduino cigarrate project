@@ -1,0 +1,63 @@
+int red = 12;
+int GasPin = A0;
+
+int speakerPin = 8;
+
+int numTones = 8;
+int tones[] = {392};
+
+int day, hour, minute, second = 0;
+
+void setup(){
+  pinMode(red, OUTPUT);
+  pinMode(GasPin, INPUT);
+  Serial.begin(9600);
+}
+
+void loop(){
+
+  int i = analogRead(GasPin);
+  Serial.println(i);
+
+  if (i >= 700){
+    tone(speakerPin, tones[0]);
+
+    Serial.println("day");
+    Serial.println(day);
+    Serial.println("hours");
+    Serial.println(hour);
+    Serial.println("minutes");
+    Serial.println(minute);
+    Serial.println("second");
+    Serial.println(second);
+
+  }
+  else if (i < 500){
+    noTone(speakerPin);
+  }
+
+  delay(1000);
+  clock();
+} 
+
+int clock () {
+
+  second++;
+
+  if (second == 60) {
+    minute++;
+    second = 0;
+  }
+
+  else if (minute == 60) {
+    hour++;
+    minute = 0;
+  }
+
+  else if (hour == 24) {
+    day++;
+    hour = 0;
+  }
+  
+  return 0;
+}
